@@ -10,7 +10,6 @@ form label {
 }
 
 form .word-count {
-    float: right;
     font-weight: bold;
 }
 
@@ -178,6 +177,10 @@ textarea {
     line-height: 1.5;
     user-select: text;
     resize: vertical;
+}
+
+textarea.gh-input {
+    line-height: 1.5em;
 }
 
 
