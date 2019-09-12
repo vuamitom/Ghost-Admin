@@ -97,6 +97,17 @@
                     {{/gh-form-group}}
                 {{/unless}}
 
+                {{#unless session.user.isAuthorOrContributor}}
+                    {{#gh-form-group errors=post.errors hasValidated=post.hasValidated property="fee"}}
+                    <label for="fee">Fee</label>
+                    {{gh-text-input
+                        id="fee"
+                        name="post-setting-fee"
+                        value=post.fee
+                        focus-out=(action "setFee")}}
+                    {{/gh-form-group}}
+                {{/unless}}
+
                 <ul class="nav-list nav-list-block">
                     <li class="nav-list-item" {{action "showSubview" "meta-data"}} data-test-button="meta-data">
                         <button type="button">

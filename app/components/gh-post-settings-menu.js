@@ -215,6 +215,14 @@ export default Component.extend(SettingsMenuMixin, {
             return post.validate({property: 'customExcerpt'}).then(() => this.savePost.perform());
         },
 
+        setFee(){
+            let post = this.post;
+            // update post regardless of whether fee value actually changes
+            // will need to create a feeScartch attribute as an indirection value to get update from ui
+            // and compare with the fee attribute , the same as what is being done for customExcerpt 
+            return post.validate({property: 'fee'}).then(() => this.savePost.perform());
+        },
+
         setHeaderInjection(code) {
             let post = this.post;
             let currentCode = post.get('codeinjectionHead');

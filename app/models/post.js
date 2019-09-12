@@ -105,6 +105,7 @@ export default Model.extend(Comparable, ValidationEngine, {
     updatedBy: attr('number'),
     url: attr('string'),
     uuid: attr('string'),
+    fee: attr('number', {defaultValue: 0}),
 
     authors: hasMany('user', {
         embedded: 'always',
