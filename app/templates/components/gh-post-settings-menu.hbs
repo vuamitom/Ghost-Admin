@@ -108,7 +108,8 @@
                     {{/gh-form-group}}
                 {{/unless}}
 
-                {{#unless session.user.isAuthorOrContributor}}
+                {{#unless session.user.isContributor}}
+                {{#if (eq post.displayName "post") }}
                     {{#gh-form-group errors=post.errors hasValidated=post.hasValidated property="fee"}}
                     <label for="fee">Fee</label>
                     {{gh-text-input
@@ -117,6 +118,7 @@
                         value=post.fee
                         focus-out=(action "setFee")}}
                     {{/gh-form-group}}
+                {{/if}}
                 {{/unless}}
 
                 <ul class="nav-list nav-list-block">
