@@ -14,6 +14,7 @@ export default PostSerializer.extend({
         delete json.author;
         // Fee is not applicable to page
         delete json.fee;
+        delete json.code;
 
         return json;
     }

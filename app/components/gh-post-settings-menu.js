@@ -223,6 +223,12 @@ export default Component.extend(SettingsMenuMixin, {
             return post.validate({property: 'fee'}).then(() => this.savePost.perform());
         },
 
+        setCode(){
+            let post = this.post;
+            console.log("post code " , post.get('code'));
+            return post.validate({property: 'code'}).then(() => this.savePost.perform());
+        },
+
         setHeaderInjection(code) {
             let post = this.post;
             let currentCode = post.get('codeinjectionHead');
