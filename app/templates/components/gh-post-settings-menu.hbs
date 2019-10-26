@@ -121,6 +121,17 @@
                 {{/if}}
                 {{/unless}}
 
+                {{#if (eq post.displayName "post") }}
+                    {{#gh-form-group errors=post.errors hasValidated=post.hasValidated property="code"}}
+                    <label for="code">Code</label>
+                    {{gh-text-input
+                        id="code"
+                        name="post-setting-code"
+                        value=post.code
+                        focus-out=(action "setCode")}}
+                    {{/gh-form-group}}
+                {{/if}}
+
                 <ul class="nav-list nav-list-block">
                     <li class="nav-list-item" {{action "showSubview" "meta-data"}} data-test-button="meta-data">
                         <button type="button">
