@@ -51,6 +51,7 @@ export default Model.extend(ValidationEngine, {
     isEditor: equal('role.name', 'Editor'),
     isAdmin: equal('role.name', 'Administrator'),
     isOwner: equal('role.name', 'Owner'),
+    isReader: equal('role.name', 'Reader'),
 
     // These are used in enough places that it's useful to throw them here
     isOwnerOrAdmin: or('isOwner', 'isAdmin'),

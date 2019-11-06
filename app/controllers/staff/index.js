@@ -40,8 +40,8 @@ export default Controller.extend({
     }),
 
     activeUsers: computed('allUsers.@each.status', function () {
-        return this.allUsers.filter((user) => {
-            return user.status !== 'inactive';
+        return this.allUsers.filter((user) => {        
+            return user.status !== 'inactive' && !user.get('isReader');
         });
     }),
 
