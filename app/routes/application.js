@@ -105,6 +105,11 @@ export default Route.extend(ApplicationRouteMixin, ShortcutsRoute, {
         loadServerNotifications(isDelayed) {
             if (this.get('session.isAuthenticated')) {
                 this.get('session.user').then((user) => {
+                    if (user.get('isReader')) {
+                        // prevent reader from entering this site
+                        // redirect to main page 
+                        window.location.href = window.location.origin;
+                    }
                     if (!user.get('isAuthorOrContributor')) {
                         this.store.findAll('notification', {reload: true}).then((serverNotifications) => {
                             serverNotifications.forEach((notification) => {
