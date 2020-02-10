@@ -1,8 +1,12 @@
-import DS from 'ember-data';
+// TODO: remove usage of Ember Data's private `Errors` class when refactoring validations
+// eslint-disable-next-line
+import CustomViewValidator from 'ghost-admin/validators/custom-view';
+import DS from 'ember-data'; // eslint-disable-line
 import IntegrationValidator from 'ghost-admin/validators/integration';
 import InviteUserValidator from 'ghost-admin/validators/invite-user';
+import MemberValidator from 'ghost-admin/validators/member';
 import Mixin from '@ember/object/mixin';
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import NavItemValidator from 'ghost-admin/validators/nav-item';
 import PostValidator from 'ghost-admin/validators/post';
 import RSVP from 'rsvp';
@@ -32,6 +36,7 @@ export default Mixin.create({
     // in that case the model will be the class that the ValidationEngine
     // was mixed into, i.e. the controller or Ember Data model.
     validators: {
+        customView: CustomViewValidator,
         inviteUser: InviteUserValidator,
         navItem: NavItemValidator,
         post: PostValidator,
@@ -43,6 +48,7 @@ export default Mixin.create({
         slackIntegration: SlackIntegrationValidator,
         tag: TagSettingsValidator,
         user: UserValidator,
+        member: MemberValidator,
         integration: IntegrationValidator,
         webhook: WebhookValidator
     },

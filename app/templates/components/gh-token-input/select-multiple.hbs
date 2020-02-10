@@ -1,125 +1,64 @@
 {{!--
-    NOTE: changes from ember-power-select:
+    NOTE: changes from ember-power-select template...
     - `extra` has our custom drag-tracking actions assigned to it
- --}}
-{{#if (hasBlock "inverse")}}
-  {{#gh-token-input/select
-    afterOptionsComponent=afterOptionsComponent
-    allowClear=allowClear
-    ariaDescribedBy=ariaDescribedBy
-    ariaInvalid=ariaInvalid
-    ariaLabel=ariaLabel
-    ariaLabelledBy=ariaLabelledBy
-    beforeOptionsComponent=beforeOptionsComponent
-    buildSelection=(action "buildSelection")
-    calculatePosition=calculatePosition
-    class=class
-    closeOnSelect=closeOnSelect
-    defaultHighlighted=defaultHighlighted
-    destination=destination
-    dir=dir
-    disabled=disabled
-    dropdownClass=dropdownClass
-    extra=(assign extra (hash
-        optionMouseDown=(action "optionMouseDown")
-        optionTouchStart=(action "optionTouchStart")
-    ))
-    horizontalPosition=horizontalPosition
-    initiallyOpened=initiallyOpened
-    loadingMessage=loadingMessage
-    matcher=matcher
-    matchTriggerWidth=matchTriggerWidth
-    noMatchesMessage=noMatchesMessage
-    onblur=onblur
-    onchange=onchange
-    onclose=onclose
-    onfocus=(action "handleFocus")
-    oninput=oninput
-    onkeydown=(action "handleKeydown")
-    onopen=(action "handleOpen")
-    options=options
-    optionsComponent=optionsComponent
-    groupComponent=groupComponent
-    placeholder=placeholder
-    registerAPI=(readonly registerAPI)
-    renderInPlace=renderInPlace
-    required=required
-    scrollTo=scrollTo
-    search=search
-    searchEnabled=searchEnabled
-    searchField=searchField
-    searchMessage=searchMessage
-    searchPlaceholder=searchPlaceholder
-    selected=selected
-    selectedItemComponent=selectedItemComponent
-    tabindex=computedTabIndex
-    tagName=tagName
-    triggerClass=concatenatedTriggerClass
-    triggerComponent=(component triggerComponent tabindex=tabindex)
-    triggerId=triggerId
-    verticalPosition=verticalPosition
-    as |option select|}}
+--}}
+<PowerSelect
+    @triggerRole={{@triggerRole}}
+    @ariaDescribedBy={{@ariaDescribedBy}}
+    @ariaInvalid={{@ariaInvalid}}
+    @ariaLabel={{@ariaLabel}}
+    @ariaLabelledBy={{@ariaLabelledBy}}
+    @afterOptionsComponent={{@afterOptionsComponent}}
+    @allowClear={{@allowClear}}
+    @beforeOptionsComponent={{this.beforeOptionsComponent}}
+    @buildSelection={{this.buildSelection}}
+    @calculatePosition={{@calculatePosition}}
+    @closeOnSelect={{@closeOnSelect}}
+    @defaultHighlighted={{@defaultHighlighted}}
+    @destination={{@destination}}
+    @disabled={{@disabled}}
+    @dropdownClass={{@dropdownClass}}
+    @extra={{assign @extra (hash
+        optionMouseDown=this.optionMouseDown
+        optionTouchStart=this.optionTouchStart
+    )}}
+    @groupComponent={{@groupComponent}}
+    @horizontalPosition={{@horizontalPosition}}
+    @initiallyOpened={{@initiallyOpened}}
+    @loadingMessage={{@loadingMessage}}
+    @matcher={{@matcher}}
+    @matchTriggerWidth={{@matchTriggerWidth}}
+    @noMatchesMessage={{@noMatchesMessage}}
+    @onBlur={{@onBlur}}
+    @onChange={{@onChange}}
+    @onClose={{@onClose}}
+    @onFocus={{this.handleFocus}}
+    @onInput={{@onInput}}
+    @onKeydown={{this.handleKeydown}}
+    @onOpen={{this.handleOpen}}
+    @options={{@options}}
+    @optionsComponent={{@optionsComponent}}
+    @placeholder={{@placeholder}}
+    @placeholderComponent={{@placeholderComponent}}
+    @preventScroll={{@preventScroll}}
+    @registerAPI={{@registerAPI}}
+    @renderInPlace={{@renderInPlace}}
+    @required={{@required}}
+    @scrollTo={{@scrollTo}}
+    @search={{@search}}
+    @searchEnabled={{@searchEnabled}}
+    @searchField={{@searchField}}
+    @searchMessage={{@searchMessage}}
+    @searchPlaceholder={{@searchPlaceholder}}
+    @selected={{@selected}}
+    @selectedItemComponent={{@selectedItemComponent}}
+    @eventType={{@eventType}}
+    @title={{@title}}
+    @triggerClass={{this.concatenatedTriggerClass}}
+    @triggerComponent={{component this.triggerComponent tabindex=@tabindex}}
+    @triggerId={{@triggerId}}
+    @verticalPosition={{@verticalPosition}}
+    @tabindex={{this.computedTabIndex}}
+    ...attributes as |option select|>
     {{yield option select}}
-  {{else}}
-    {{yield to="inverse"}}
-  {{/gh-token-input/select}}
-{{else}}
-  {{#gh-token-input/select
-    afterOptionsComponent=afterOptionsComponent
-    allowClear=allowClear
-    ariaDescribedBy=ariaDescribedBy
-    ariaInvalid=ariaInvalid
-    ariaLabel=ariaLabel
-    ariaLabelledBy=ariaLabelledBy
-    beforeOptionsComponent=beforeOptionsComponent
-    buildSelection=(action "buildSelection")
-    calculatePosition=calculatePosition
-    class=class
-    closeOnSelect=closeOnSelect
-    defaultHighlighted=defaultHighlighted
-    destination=destination
-    dir=dir
-    disabled=disabled
-    dropdownClass=dropdownClass
-    extra=(assign extra (hash
-        optionMouseDown=(action "optionMouseDown")
-        optionTouchStart=(action "optionTouchStart")
-    ))
-    horizontalPosition=horizontalPosition
-    initiallyOpened=initiallyOpened
-    loadingMessage=loadingMessage
-    matcher=matcher
-    matchTriggerWidth=matchTriggerWidth
-    noMatchesMessage=noMatchesMessage
-    onblur=onblur
-    onchange=onchange
-    onclose=onclose
-    onfocus=(action "handleFocus")
-    oninput=oninput
-    onkeydown=(action "handleKeydown")
-    onopen=(action "handleOpen")
-    options=options
-    optionsComponent=optionsComponent
-    groupComponent=groupComponent
-    placeholder=placeholder
-    registerAPI=(readonly registerAPI)
-    renderInPlace=renderInPlace
-    required=required
-    scrollTo=scrollTo
-    search=search
-    searchEnabled=searchEnabled
-    searchField=searchField
-    searchMessage=searchMessage
-    searchPlaceholder=searchPlaceholder
-    selected=selected
-    selectedItemComponent=selectedItemComponent
-    tabindex=computedTabIndex
-    tagName=tagName
-    triggerClass=concatenatedTriggerClass
-    triggerComponent=(component triggerComponent tabindex=tabindex)
-    triggerId=triggerId
-    verticalPosition=verticalPosition
-    as |option select|}}
-    {{yield option select}}
-  {{/gh-token-input/select}}
-{{/if}}
+</PowerSelect>

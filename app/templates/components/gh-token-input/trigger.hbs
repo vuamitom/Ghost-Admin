@@ -1,13 +1,14 @@
-{{#sortable-objects tagName="ul"
-    id=(concat "ember-power-select-multiple-options-" select.uniqueId)
-    class="ember-power-select-multiple-options"
-    sortableObjectList=select.selected
-    enableSort=true
-    useSwap=false
-    sortEndAction=(action "reorderItems")
-}}
+<SortableObjects
+    @tagName="ul"
+    @id={{concat "ember-power-select-multiple-options-" select.uniqueId}}
+    @class="ember-power-select-multiple-options"
+    @sortableObjectList={{select.selected}}
+    @enableSort={{true}}
+    @useSwap={{false}}
+    @sortEndAction={{action "reorderItems"}}
+>
     {{#each select.selected as |opt idx|}}
-        {{#component (or extra.tokenComponent "draggable-object")
+        {{#component (or this.extra.tokenComponent "draggable-object")
             tagName="li"
             class="ember-power-select-multiple-option"
             select=select
@@ -17,8 +18,8 @@
             mouseDown=(action "handleOptionMouseDown")
             touchStart=(action "handleOptionTouchStart")
         }}
-            {{#if selectedItemComponent}}
-                {{component selectedItemComponent option=(readonly opt) select=(readonly select)}}
+            {{#if this.selectedItemComponent}}
+                {{component this.selectedItemComponent option=(readonly opt) select=(readonly select)}}
             {{else}}
                 {{yield opt select}}
             {{/if}}
@@ -33,25 +34,32 @@
             {{/unless}}
         {{/component}}
     {{else}}
-        {{#if (and placeholder (not searchEnabled))}}
+        {{#if (and placeholder (not this.searchEnabled))}}
             <span class="ember-power-select-placeholder">{{placeholder}}</span>
         {{/if}}
     {{/each}}
 
-    {{#if searchEnabled}}
-        <input type="search" class="ember-power-select-trigger-multiple-input"
-            tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-            id="ember-power-select-trigger-multiple-input-{{select.uniqueId}}"
-            value={{select.searchText}}
-            aria-controls={{listboxId}}
-            style={{triggerMultipleInputStyle}}
-            placeholder={{maybePlaceholder}}
-            disabled={{select.disabled}}
-            oninput={{action "onInput"}}
-            onFocus={{onFocus}}
-            onBlur={{onBlur}}
-            tabindex={{tabindex}}
-            onkeydown={{action "onKeydown"}}>
+    {{#if this.searchEnabled}}
+        <input
+            type="search"
+            class="ember-power-select-trigger-multiple-input"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            id="ember-power-select-trigger-multiple-input-{{@select.uniqueId}}"
+            value={{@select.searchText}}
+            aria-controls={{this.listboxId}}
+            style={{this.triggerMultipleInputStyle}}
+            placeholder={{this.maybePlaceholder}}
+            disabled={{@select.disabled}}
+            tabindex={{@tabindex}}
+            {{on "focus" @onFocus}}
+            {{on "blur" @onBlur}}
+            {{on "input" this.handleInput}}
+            {{on "keydown" this.handleKeydown}}
+            {{did-insert this.storeInputStyles}}
+        >
     {{/if}}
-{{/sortable-objects}}
+</SortableObjects>
 <span class="ember-power-select-status-icon"></span>

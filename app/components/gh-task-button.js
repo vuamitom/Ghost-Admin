@@ -27,6 +27,7 @@ const GhTaskButton = Component.extend({
     attributeBindings: ['disabled', 'form', 'type', 'tabindex'],
 
     task: null,
+    taskArgs: undefined,
     disabled: false,
     defaultClick: false,
     buttonText: 'Save',
@@ -129,7 +130,7 @@ const GhTaskButton = Component.extend({
         }
 
         this.action();
-        task.perform();
+        task.perform(this.taskArgs);
 
         this._restartAnimation.perform();
 
@@ -149,18 +150,13 @@ const GhTaskButton = Component.extend({
     // so we want to restart the retry spinner animation to show something
     // has happened when the button is clicked
     _restartAnimation: task(function* () {
-        if (this.$('.retry-animated').length) {
-            // eslint-disable-next-line
-            let elem = this.$('.retry-animated')[0];
+        let elem = this.element.querySelector('.retry-animated');
+        if (elem) {
             elem.classList.remove('retry-animated');
             yield timeout(10);
             elem.classList.add('retry-animated');
         }
     })
-});
-
-GhTaskButton.reopenClass({
-    positionalParams: ['buttonText']
 });
 
 export default GhTaskButton;

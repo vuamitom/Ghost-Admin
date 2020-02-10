@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
-import Model from 'ember-data/model';
+import Model, {attr} from '@ember-data/model';
 import ValidationEngine from 'ghost-admin/mixins/validation-engine';
-import attr from 'ember-data/attr';
 
 export default Model.extend(ValidationEngine, {
     validationType: 'setting',
@@ -11,6 +10,7 @@ export default Model.extend(ValidationEngine, {
     logo: attr('string'),
     coverImage: attr('string'),
     icon: attr('string'),
+    brand: attr('json-string'),
     defaultLocale: attr('string'),
     activeTimezone: attr('string', {defaultValue: 'Etc/UTC'}),
     codeinjectionHead: attr('string'),
@@ -19,6 +19,7 @@ export default Model.extend(ValidationEngine, {
     twitter: attr('twitter-url-user'),
     labs: attr('string'),
     navigation: attr('navigation-settings'),
+    secondaryNavigation: attr('navigation-settings', {isSecondary: true}),
     isPrivate: attr('boolean'),
     publicHash: attr('string'),
     password: attr('string'),
@@ -38,5 +39,6 @@ export default Model.extend(ValidationEngine, {
     twitterImage: attr('string'),
     ogTitle: attr('string'),
     ogDescription: attr('string'),
-    ogImage: attr('string')
+    ogImage: attr('string'),
+    bulkEmailSettings: attr('json-string')
 });
