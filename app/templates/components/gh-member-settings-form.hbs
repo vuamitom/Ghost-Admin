@@ -10,14 +10,10 @@
 
             <GhFormGroup @errors={{this.member.errors}} @hasValidated={{this.member.hasValidated}} @property="email" @classNames="max-width">
                 <label for="member-email">Email</label>
-                {{#if this.canEditEmail}}
                 <GhTextInput @value={{this.scratchMember.email}} @id="member-email" @name="email" @tabindex="2"
                     @autocapitalize="off" @autocorrect="off" @autocomplete="off"
                     @focus-out={{action "setProperty" "email" this.scratchMember.email}} />
                 <GhErrorMessage @errors={{this.member.errors}} @property="email" />
-                {{else}}
-                <GhTextInput @name="email-disabled" @disabled={{true}} @value={{this.scratchMember.email}} />
-                {{/if}}
             </GhFormGroup>
         </div>
         <div class="pa5 pt5 pb6 bt b--whitegrey">
@@ -56,7 +52,7 @@
     </div>
 </div>
 
-{{#unless this.member.isNew}}
+{{#if canShowStripeInfo}}
 <h4 class="midlightgrey f-small fw5 ttu mt12">Stripe info</h4>
 
 {{#if this.isLoading}}
@@ -136,7 +132,7 @@
                                     <td class="gh-member-stripe-label">Plan</td>
                                     <td class="gh-member-stripe-data">
                                         {{subscription.plan.nickname}}
-                                        <span class="midgrey">({{subscription.dollarAmount}}
+                                        <span class="midgrey">({{subscription.amount}}
                                             <span class="ttu">{{subscription.plan.currency}}</span>/{{subscription.plan.interval}})
                                         </span>
                                     </td>
@@ -189,4 +185,4 @@
         </div>
     </div>
 {{/if}}
-{{/unless}}
+{{/if}}

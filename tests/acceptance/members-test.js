@@ -89,8 +89,8 @@ describe('Acceptance: Members', function () {
             expect(find('.gh-member-settings-primary input[name="name"]').value, 'loads correct member into form')
                 .to.equal(member1.name);
 
-            expect(find('.gh-member-settings-primary input[name="email-disabled"]').disabled, 'makes sure email is disabled')
-                .to.equal(true);
+            expect(find('.gh-member-settings-primary input[name="email"]').value, 'loads correct email into form')
+                .to.equal(member1.email);
 
             // trigger save
             await fillIn('.gh-member-settings-primary input[name="name"]', 'New Name');
@@ -134,7 +134,7 @@ describe('Acceptance: Members', function () {
             // it navigates to the new member route
             expect(currentURL(), 'new member URL').to.equal('/members/new');
             // it displays the new member form
-            expect(find('.member-basic-info-form .gh-canvas-header h2').textContent, 'settings pane title')
+            expect(find('.gh-canvas-header h2').textContent, 'settings pane title')
                 .to.contain('New member');
 
             // // all fields start blank
@@ -142,9 +142,6 @@ describe('Acceptance: Members', function () {
                 expect(elem.value, `input field for ${elem.getAttribute('name')}`)
                     .to.be.empty;
             });
-
-            expect(find('.gh-member-settings-primary input[name="email"]').disabled, 'makes sure email is disabled')
-                .to.equal(false);
 
             // save new member
             await fillIn('.gh-member-settings-primary input[name="name"]', 'New Name');
@@ -159,8 +156,9 @@ describe('Acceptance: Members', function () {
 
             expect(find('.gh-member-settings-primary input[name="name"]').value, 'name has been preserved')
                 .to.equal('New Name');
-            expect(find('.gh-member-settings-primary input[name="email-disabled"]').disabled, 'makes sure email is disabled')
-                .to.equal(true);
+
+            expect(find('.gh-member-settings-primary input[name="email"]').value, 'email has been preserved')
+                .to.equal('example@domain.com');
         });
     });
 });
